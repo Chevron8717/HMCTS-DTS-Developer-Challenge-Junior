@@ -34,9 +34,13 @@ phpcs *args:
 psalm *args:
     @docker compose run --rm api composer run psalm -- {{args}}
 
-# Run Codeception (tests)
+# Run Codeception (API tests)
 codecept *args:
     @docker compose run --rm api composer run codecept -- {{args}}
+
+# Run Vitest (frontend tests)
+vitest *args:
+    @cd frontend && npm run test -- {{args}}
 
 # Open Yii2 debug's UI in the default browser
 debug:
