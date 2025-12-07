@@ -6,6 +6,8 @@
 
 declare(strict_types=1);
 
+use app\services\TaskService;
+
 $config = [
     'id' => 'hmcts-dts-tasks-api',
     'name' => 'HMCTS DTS Tasks API',
@@ -37,6 +39,13 @@ $config = [
                     'levels' => ['trace'],
                     'logFile' => '@runtime/logs/debug.log',
                 ],
+            ],
+        ],
+    ],
+    'container' => [
+        'definitions' => [
+            TaskService::class => [
+                'class' => TaskService::class,
             ],
         ],
     ],
