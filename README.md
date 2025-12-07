@@ -62,6 +62,108 @@ Yii2 is a high-performance MVC PHP framework best suited for developing web appl
 
 - Yii2 Documentation: [https://www.yiiframework.com/doc/guide/2.0/en](https://www.yiiframework.com/doc/guide/2.0/en)
 
+#### API Endpoints
+
+The backend exposes the following API endpoints:
+
+##### `GET /tasks`
+
+Retrieves a list of all tasks.
+
+Example:
+
+```output
+$ curl -X GET http://localhost:8000/tasks \
+  -H "Accept: application/json"
+
+[
+  {
+    "id": 1,
+    "title": "Sample Task",
+    "description": "This is a sample task description.",
+    "status": "pending",
+    "created_at": "2024-01-01T12:00:00Z",
+    "updated_at": "2024-01-01T12:00:00Z"
+  },
+  ...
+]
+```
+
+##### `POST /tasks`
+
+Creates a new task.
+
+Example:
+
+```output
+$ curl -X POST http://localhost:8000/tasks \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "New Task",
+    "description": "Description of the new task",
+    "status": "pending",
+    "due_at": "2024-01-10 12:00:00"
+  }'
+
+{
+  "id": 3,
+  "title": "New Task",
+  "description": "Description of the new task",
+  "status": "pending",
+  "due_at": "2024-01-10 12:00:00",
+  "created_at": "2024-01-02 12:00:00",
+  "updated_at": "2024-01-02 12:00:00"
+}
+```
+
+##### `GET /tasks/{id}`
+
+Retrieves a specific task by ID.
+
+Example:
+
+```output
+$ curl -X GET http://localhost:8000/tasks/3 \
+  -H "Accept: application/json"
+
+{
+  "id": 3,
+  "title": "New Task",
+  "description": "Description of the new task",
+  "status": "pending",
+  "due_at": "2024-01-10 12:00:00",
+  "created_at": "2024-01-02 12:00:00",
+  "updated_at": "2024-01-02 12:00:00"
+}
+```
+
+##### `PUT /tasks/{id}`
+
+Updates an existing task by ID.
+
+Example:
+
+```output
+$ curl -X PUT http://localhost:8000/tasks/3 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Updated Task Title",
+    "description": "Updated description",
+    "status": "completed",
+    "due_at": "2024-01-10 12:00:00"
+  }'
+
+{
+  "id": 3,
+  "title": "Updated Task Title",
+  "description": "Updated description",
+  "status": "completed",
+  "due_at": "2024-01-10 12:00:00",
+  "created_at": "2024-01-02 12:00:00",
+  "updated_at": "2024-01-03 12:00:00"
+}
+```
+
 ### Frontend
 
 The frontend is developed using TypeScript with Vite and React. It provides a user interface for interacting with the backend API.
