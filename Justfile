@@ -3,8 +3,11 @@
 # To use this Justfile, ensure you have Just installed: https://just.systems/
 
 # Start the development environment
-start:
+start-api:
     @docker compose up -d
+
+start-frontend:
+    @cd frontend && npm run dev
 
 # Stop the development environment
 stop:
@@ -17,6 +20,7 @@ api +cmd:
 # Install dependencies
 install:
     @docker compose run --rm api composer install
+    @cd frontend && npm install && npx playwright install --with-deps
 
 # Run database migrations
 migrate:

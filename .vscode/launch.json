@@ -1,5 +1,21 @@
 {
     "version": "0.2.0",
+    "compounds": [
+        {
+            /*
+                Full stack debug configuration: API + Frontend.
+
+                Applications must be started separately before starting this
+                debug session (see README.md for instructions).
+            */
+            "name": "Full Stack (API + Frontend)",
+            "configurations": [
+                "API (Xdebug)",
+                "Frontend (Chrome)",
+            ],
+            "stopAll": true,
+        },
+    ],
     "configurations": [
         {
             /*
@@ -13,6 +29,19 @@
                 "/var/www": "${workspaceFolder}/api/",
             },
             "internalConsoleOptions": "neverOpen",
+        },
+        {
+            /*
+                Debug configuration for the Vite frontend (Chrome).
+            */
+            "name": "Frontend (Chrome)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}/frontend",
+            "skipFiles": [
+                "${workspaceRoot}/frontend/node_modules/**/*.js",
+            ],
         },
     ],
 }
