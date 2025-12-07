@@ -1,0 +1,13 @@
+namespace: Tests
+support_namespace: Support
+paths:
+  tests: tests
+  output: tests/_output
+  data: tests/Support/Data
+  support: tests/Support
+actor_suffix: Tester
+bootstrap: bootstrap.php
+modules:
+  config:
+    Yii2:
+      configFile: config/test.php

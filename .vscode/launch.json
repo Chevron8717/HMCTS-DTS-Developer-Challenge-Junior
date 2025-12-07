@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            /*
+                Debug configuration for the Yii2 REST API (Xdebug).
+            */
+            "name": "API (Xdebug)",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www": "${workspaceFolder}/api/",
+            },
+            "internalConsoleOptions": "neverOpen",
+        },
+    ],
+}

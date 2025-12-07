@@ -1,0 +1,44 @@
+services:
+  api:
+    image: thecodingmachine/php:8.4-v5-apache
+    networks:
+      - network
+    ports:
+      - "127.0.0.1:8000:80"
+    volumes:
+      - ./api:/var/www
+    working_dir: /var/www
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/web
+      - DB_DSN=pgsql:host=database;port=5432;dbname=devchallenge
+      - DB_USERNAME=devuser
+      - DB_PASSWORD=rootpassword
+      - PHP_EXTENSIONS=intl pdo_pgsql pgsql xdebug
+      - PHP_INI_XDEBUG__IDEKEY=vscode
+      - PHP_INI_XDEBUG__CLIENT_HOST=host.docker.internal
+      - PHP_INI_XDEBUG__MODE=develop,debug,coverage
+      - PHP_INI_XDEBUG__START_WITH_REQUEST=yes
+      - YII_ENV=dev
+      - YII_DEBUG=true
+    depends_on:
+      - database
+
+  database:
+    image: postgres:18
+    networks:
+      - network
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      POSTGRES_PASSWORD: rootpassword
+      POSTGRES_DB: devchallenge
+      POSTGRES_USER: devuser
+    volumes:
+      - database_data:/var/lib/postgresql/18/docker
+
+networks:
+  network:
+   driver: bridge
+
+volumes:
+  database_data:

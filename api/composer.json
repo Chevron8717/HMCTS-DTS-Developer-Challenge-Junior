@@ -1,0 +1,45 @@
+{
+    "description": "HMCTS DTS Developer Challenge - Junior",
+    "type": "project",
+    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "require": {
+        "php": "~8.4.0",
+        "ext-intl": "*",
+        "ext-pdo": "*",
+        "ext-pdo_pgsql": "*",
+        "ext-pgsql": "*",
+        "ext-json": "*",
+        "yiisoft/yii2": "~2.0.53"
+    },
+    "require-dev": {
+        "codeception/codeception": "^5.0",
+        "codeception/module-asserts": "^3.0",
+        "codeception/module-rest": "^3.3",
+        "codeception/module-yii2": "^2.0",
+        "squizlabs/php_codesniffer": "^4",
+        "vimeo/psalm": "^6.13",
+        "yiisoft/yii2-debug": "~2.1.0"
+    },
+    "scripts": {
+        "psalm": "psalm",
+        "phpcs": "phpcs --standard=phpcs.xml --extensions=php",
+        "codecept": "codecept"
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "."
+        }
+    }
+}

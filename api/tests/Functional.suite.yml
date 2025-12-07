@@ -1,0 +1,9 @@
+actor: FunctionalTester
+modules:
+  enabled:
+    - Asserts
+    - Yii2
+    - REST:
+        depends: Yii2
+        url: /
+        part: JSON

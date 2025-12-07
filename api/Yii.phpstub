@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * Yii class stub for Psalm static analyser.
+ */
+
+declare(strict_types=1);
+
+namespace {
+    define('YII_DEBUG', (bool) rand(0, 1));
+    define('YII_ENV', ['dev', 'prod', 'test'][rand(0, 2)]);
+    define('YII_ENV_DEV', (bool) rand(0, 1));
+
+    class Yii extends \yii\BaseYii
+    {
+        /**
+         * @var BaseApplication|WebApplication|ConsoleApplication
+         */
+        public static $app;
+    }
+
+    abstract class BaseApplication extends yii\base\Application
+    {
+    }
+
+    class WebApplication extends yii\web\Application
+    {
+    }
+
+    class ConsoleApplication extends yii\console\Application
+    {
+    }
+}

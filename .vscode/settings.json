@@ -1,0 +1,4 @@
+{
+    "phpcs.executablePath": "api/vendor/bin/phpcs",
+    "phpcs.standard": "api/phpcs.xml"
+}
