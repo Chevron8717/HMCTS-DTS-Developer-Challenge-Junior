@@ -126,10 +126,10 @@ final class TaskController extends Controller
     protected function verbs(): array
     {
         return [
-            'index' => ['GET'],
-            'view' => ['GET'],
-            'create' => ['POST'],
-            'update' => ['PUT'],
+            'index' => ['GET', 'OPTIONS'],
+            'view' => ['GET', 'OPTIONS'],
+            'create' => ['POST', 'OPTIONS'],
+            'update' => ['PUT', 'OPTIONS'],
         ];
     }
 }
