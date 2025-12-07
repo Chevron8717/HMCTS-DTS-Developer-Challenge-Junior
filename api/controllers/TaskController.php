@@ -33,6 +33,10 @@ final class TaskController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Task::find(),
+            'pagination' => false,
+            'sort' => [
+                'defaultOrder' => ['created_at' => SORT_DESC],
+            ],
         ]);
 
         return $dataProvider;
