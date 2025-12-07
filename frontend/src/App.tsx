@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
 
+import { AppShell, Box, Container, Flex, Grid, MantineProvider } from '@mantine/core';
+import { CreateTaskForm } from './components/CreateTaskForm';
+import { TaskList } from './components/TaskList';
+import { useTasks } from './hooks/useTasks';
+
+/**
+ * Main application component.
+ *
+ * @returns The main application component.
+ */
 function App() {
-  const [count, setCount] = useState(0)
+  const { tasks, loading, error, createTask } = useTasks();
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <MantineProvider>
+      <AppShell
+        padding="md"
+        header={{ height: 50 }}
+      >
+        <AppShell.Header>
+          <Box p="xs" fw={700} fz="lg">
+            <div>HMCTS DTS - Tasks</div>
+          </Box>
+        </AppShell.Header>
+        <AppShell.Main>
+          <Container size="lg">
+            <Grid mb="md">
+              <Grid.Col span={{ base: 12, sm: 5 }}>
+                <Box mb="md" bg="gray.0" p="md">
+                  <CreateTaskForm onSubmit={createTask} />
+                </Box>
+              </Grid.Col>
+              <Grid.Col span={{ base: 12, sm: 6 }}>
+                <TaskList tasks={tasks} />
+              </Grid.Col>
+            </Grid>
+          </Container>
+        </AppShell.Main>
+      </AppShell>
+    </MantineProvider>
+  );
 }
 
 export default App
